@@ -19,3 +19,9 @@ my_map <- leaflet() %>%
 my_map
 
 ```
+
+This page is viewable at:
+
+https://packetiq.github.io/DevelopingDataProducts/R_Markdown_Week2_Peer-graded_Assignment.html
+
+
