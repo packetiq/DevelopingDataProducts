@@ -1,0 +1,30 @@
+---
+title: "Developing Data Products - R Markdown and Plotly"
+author: "James H. Baxter"
+date: "January 8, 2017"
+output: html_document
+---
+
+## Example of a Plotly Graph on diamonds data  
+
+
+__Plotly graphs are interactive__: Click-drag to zoom, shift-click to pan, double-click to autoscale  
+
+
+
+```{r, echo=FALSE, message=FALSE}
+
+library(plotly)
+set.seed(100)
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+plot_ly(d, x = ~carat, y = ~price, color = ~carat,
+        size = ~carat, text = ~paste("Clarity: ", clarity))
+
+```
+
+
+
+Viewable at:
+
+https://packetiq.github.io/DevelopingDataProducts/R_Markdown_Week2_Peer-graded_Assignment.html
+
