@@ -26,5 +26,4 @@ plot_ly(d, x = ~carat, y = ~price, color = ~carat,
 
 Viewable at:
 
-https://packetiq.github.io/DevelopingDataProducts/R_Markdown_Week2_Peer-graded_Assignment.html
-
+https://packetiq.github.io/DevelopingDataProducts/R_Markdown_w_Plotly_Week3_Peer-graded_Assignment.html
