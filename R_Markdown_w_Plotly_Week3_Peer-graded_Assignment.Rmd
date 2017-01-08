@@ -22,7 +22,7 @@ plot_ly(d, x = ~carat, y = ~price, color = ~carat,
 
 ```
 
-This page is viewable at:
+This page is viewable at:  
 
 https://packetiq.github.io/R_Markdown_w_Plotly_Week3_Peer-graded_Assignment.html
 
