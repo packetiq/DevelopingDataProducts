@@ -8,7 +8,8 @@ Files for the Coursera Data Scientist - Developing Data Products course
 This project has two parts:
 
 ## Shiny Application
-Folder [shiny-application](shiny-application) contains the source files for a Shiny application called Word Cloud.
+Folder [shiny-application](shiny-application) contains the source files for a Shiny application called Word Cloud.  
+
 The Word Cloud application is hosted on ShinyIO at: [https://packetiq.shinyapps.io/wordcloud/](https://packetiq.shinyapps.io/wordcloud/)
 
 ## Reproducible Pitch
