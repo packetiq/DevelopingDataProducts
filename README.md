@@ -15,4 +15,5 @@ The Word Cloud application is hosted on ShinyIO at: [https://packetiq.shinyapps.
 ## Reproducible Pitch
 Folder [reproducible-pitch-presentation](reproducible-pitch-presentation) contains the source files for a Reproducable Pitch using slidify that describes the Word Cloud application.
 
-You can view this presentation at: [http://packetiq.github.io/wordcloud/index.html](http://packetiq.github.io/wordcloud/index.html)
+You can view this presentation at:
+[https://packetiq.github.io/DevelopingDataProducts/reproducable-pitch-presentation/WordCloud/index.html#1](https://packetiq.github.io/DevelopingDataProducts/reproducable-pitch-presentation/WordCloud/index.html#1)
