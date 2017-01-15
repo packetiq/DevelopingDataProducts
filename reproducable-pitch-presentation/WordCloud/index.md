@@ -1,0 +1,110 @@
+---
+title       : 'Word Cloud for Classic Books'
+subtitle    : 'Developing Data Science Course Project: Shiny Application and Reproducable Pitch'
+author      : J. Baxter
+date				: January 14 2017
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+<style>
+.title-slide {
+  background-color: #FFFFFF; /* #EDE0CF; ; #CA9F9D*/
+  background-image:url(http://goo.gl/EpXln);
+  
+}
+
+.title-slide hgroup > h1 { 
+	color: #6000FF; 
+}
+
+.title-slide hgroup > h2 { 
+	color: #8000FF;
+}
+
+slide:not(.segue) h1{color: #0548FF}
+slide:not(.segue) h2{color: #0548FF}
+  
+</style>
+
+## Overview  
+
+This presentation introduces an application called Word Cloud.  
+Word Cloud allows you to select from a list of classic books and build a word cloud that reveals what the most popular words in the text were. The available books include:  
+
+* Sun Tzu on the Art of War  
+* Alices' Adventures in Wonderland  
+* A Mid Summer Night's Dream  
+* The Merchant of Venice  
+* Romeo and Juliet  
+* The Adventures of Huckleberry Finn  
+* The Time Machine  
+* White Fang 
+
+Some of these books contain a high word count as can be seen in the next slide; the Word Cloud application reveals the most common words used in the text, which often reveals much about the tone and nature of the story.  
+
+---
+
+## Word count in a classic book: Huckleberry Finn  
+
+
+
+```r
+word_count<-function(txt_doc){
+  conn <- file(txt_doc, "r", blocking=FALSE)
+  x <- readLines(conn)
+  if(length(grep("---",x))>0){x<-x[-seq(1,max(grep("---",x)))]}
+  wrds<-0
+  for(line in x){
+    split_line<-strsplit(gsub("[^[:alnum:] ]", "", line), " +")[[1]]
+    split_line<-split_line[split_line!=""]
+    wrds<-wrds+length(split_line)
+  }
+  close.connection(conn)
+  return(wrds)
+}
+
+word_count('./huck_finn.txt')
+```
+
+```
+## [1] 110862
+```
+
+---
+
+## Using the Word Cloud application  
+
+The Word Cloud application is easy and intuative to use after an initial trial.  
+
+There are controls that allow you to adjust:
+
+*1.* The Minimum Word Frequency
+
+This is the minimum number of times a given word must appear in the text to be included in the 'cloud word' collection.  
+
+*2.* The Maximum Words in the Cloud
+
+This is the maximum number of words to include in the cloud group. Note that if the Minimum Word Frequency is set to a high value, there may not be enough words that meet the minimum word count criteria to populate the cloud with the 'Maximum Words' count.  
+
+---
+
+## Try Word Cloud!  
+
+The Word Cloud application is available here:  
+
+[https://packetiq.shinyapps.io/wordcloud/](https://packetiq.shinyapps.io/wordcloud/)  
+
+The source files for the Word Cloud application are available on GitHub as well:  
+
+[https://github.com/packetiq/DevelopingDataProducts/tree/gh-pages/shiny-application](https://github.com/packetiq/DevelopingDataProducts/tree/gh-pages/shiny-application)  
+
+
+Thank You!
+
+

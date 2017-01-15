@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Cloud for Classic Books</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Word Cloud for Classic Books">
+  <meta name="author" content="J. Baxter">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/slidify.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Word Cloud for Classic Books</h1>
+    <h2>Developing Data Science Course Project: Shiny Application and Reproducable Pitch</h2>
+    <p>J. Baxter<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.title-slide {
+  background-color: #FFFFFF; /* #EDE0CF; ; #CA9F9D*/
+  background-image:url(http://goo.gl/EpXln);
+  
+}
+
+.title-slide hgroup > h1 { 
+    color: #6000FF; 
+}
+
+.title-slide hgroup > h2 { 
+    color: #8000FF;
+}
+
+slide:not(.segue) h1{color: #0548FF}
+slide:not(.segue) h2{color: #0548FF}
+  
+</style>
+
+<h2>Overview</h2>
+
+<p>This presentation introduces an application called Word Cloud.<br>
+Word Cloud allows you to select from a list of classic books and build a word cloud that reveals what the most popular words in the text were. The available books include:  </p>
+
+<ul>
+<li>Sun Tzu on the Art of War<br></li>
+<li>Alices&#39; Adventures in Wonderland<br></li>
+<li>A Mid Summer Night&#39;s Dream<br></li>
+<li>The Merchant of Venice<br></li>
+<li>Romeo and Juliet<br></li>
+<li>The Adventures of Huckleberry Finn<br></li>
+<li>The Time Machine<br></li>
+<li>White Fang </li>
+</ul>
+
+<p>Some of these books contain a high word count as can be seen in the next slide; the Word Cloud application reveals the most common words used in the text, which often reveals much about the tone and nature of the story.  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Word count in a classic book: Huckleberry Finn</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">word_count&lt;-function(txt_doc){
+  conn &lt;- file(txt_doc, &quot;r&quot;, blocking=FALSE)
+  x &lt;- readLines(conn)
+  if(length(grep(&quot;---&quot;,x))&gt;0){x&lt;-x[-seq(1,max(grep(&quot;---&quot;,x)))]}
+  wrds&lt;-0
+  for(line in x){
+    split_line&lt;-strsplit(gsub(&quot;[^[:alnum:] ]&quot;, &quot;&quot;, line), &quot; +&quot;)[[1]]
+    split_line&lt;-split_line[split_line!=&quot;&quot;]
+    wrds&lt;-wrds+length(split_line)
+  }
+  close.connection(conn)
+  return(wrds)
+}
+
+word_count(&#39;./huck_finn.txt&#39;)
+</code></pre>
+
+<pre><code>## [1] 110862
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Using the Word Cloud application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Word Cloud application is easy and intuative to use after an initial trial.  </p>
+
+<p>There are controls that allow you to adjust:</p>
+
+<p><em>1.</em> The Minimum Word Frequency</p>
+
+<p>This is the minimum number of times a given word must appear in the text to be included in the &#39;cloud word&#39; collection.  </p>
+
+<p><em>2.</em> The Maximum Words in the Cloud</p>
+
+<p>This is the maximum number of words to include in the cloud group. Note that if the Minimum Word Frequency is set to a high value, there may not be enough words that meet the minimum word count criteria to populate the cloud with the &#39;Maximum Words&#39; count.  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Try Word Cloud!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Word Cloud application is available here:  </p>
+
+<p><a href="https://packetiq.shinyapps.io/wordcloud/">https://packetiq.shinyapps.io/wordcloud/</a>  </p>
+
+<p>The source files for the Word Cloud application are available on GitHub as well:  </p>
+
+<p><a href="https://github.com/packetiq/DevelopingDataProducts/tree/gh-pages/shiny-application">https://github.com/packetiq/DevelopingDataProducts/tree/gh-pages/shiny-application</a>  </p>
+
+<p>Thank You!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Word count in a classic book: Huckleberry Finn'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Using the Word Cloud application'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Try Word Cloud!'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
